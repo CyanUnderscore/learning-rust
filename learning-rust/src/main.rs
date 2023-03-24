@@ -1,19 +1,27 @@
-struct Man {
-    name : String,
-    age : u16,
-    job : String
+struct Rectangle {
+   width: u32,
+   height: u32
 }
 
-impl Man {
-    fn get_in_string(&self) -> String {
-      format!("{} {} {}", self.name, self.age, self.job) 
+impl Rectangle {
+    fn can_hold(&self, rect : &Rectangle ) -> bool {
+      self.height > rect.height && self.width > rect.width
 }}
 
 fn main() {
-    let man1 = Man { 
-        name: String::from("james"), 
-        age: 122, 
-        job: String::from("ingenieur")
+    let rect1 = Rectangle {
+        width: 30,
+        height: 50,
     };
-    println!("{}", man1.get_in_string());
+    let rect2 = Rectangle {
+        width: 10,
+        height: 40,
+    };
+    let rect3 = Rectangle {
+        width: 60,
+        height: 45,
+    };
+
+    println!("Can rect1 hold rect2? {}", rect1.can_hold(&rect2));
+    println!("Can rect1 hold rect3? {}", rect1.can_hold(&rect3));
 }
