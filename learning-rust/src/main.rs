@@ -6,7 +6,7 @@ struct Man {
 
 impl Man {
     fn get_in_string(&self) -> String {
-        String::from(&self.name + " " + &self.age.to_str() + " " + &self.job)
+      format!("{} {} {}", self.name, self.age, self.job) 
 }}
 
 fn main() {
