@@ -6,17 +6,18 @@ struct Rectangle {
 impl Rectangle {
     fn can_hold(&self, rect : &Rectangle ) -> bool {
       self.height > rect.height && self.width > rect.width
-}}
+    }
+    fn square(size: u32) -> Self {
+        Self { width: size, height: size }
+    }
+}
 
 fn main() {
     let rect1 = Rectangle {
         width: 30,
         height: 50,
     };
-    let rect2 = Rectangle {
-        width: 10,
-        height: 40,
-    };
+    let rect2 = Rectangle::square(35);
     let rect3 = Rectangle {
         width: 60,
         height: 45,
