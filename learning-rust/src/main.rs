@@ -1,39 +1,18 @@
-use druid::{Data, widget::{Label, Button, Flex}, Env, Widget, WindowDesc, AppLauncher};
-/*
- * Data 
- * Ui Builder
- * Main
- */
-
-#[derive(Clone, Data)]
-struct FunnyData {
-    num: i32
-}
-
-fn ui_builder() -> impl Widget<FunnyData> {
-    // Counter: _
-    // + -
-    let label = Label::new(|data: &FunnyData, _: &Env| format!("Counter: {}", data.num));
-    let text = Label::new(|data: &FunnyData, _: &Env| format!("10 + 9 = {}", data.num));
-
-    let increment = Button::new("+")
-        .on_click(|_ctx, data: &mut FunnyData, _env| data.num += 1);
-    let decrement = Button::new("-")
-        .on_click(|_ctx, data: &mut FunnyData, _env| data.num -= 1);
-            let new_button = Button::new("you stupid")
-        .on_click(|_ctx, data: &mut FunnyData, _env| data.num = 21);
-    Flex::column().with_child(text).with_child(Flex::row().with_child(new_button));
-    Flex::column().with_child(label).with_child(Flex::row().with_child(increment).with_child(decrement))
-
-
+enum Message {
+    Print(Box<str>),
+    Warning(i32),
+    Succes
 }
 
 fn main() {
-    // Window Descriptor
-    // Launch to the stars
-    let main_window = WindowDesc::new(ui_builder())
-        .title("Funny Window");
-    AppLauncher::with_window(main_window)
-        .log_to_console()
-        .launch(FunnyData { num: 0 }).unwrap();
+    let curmes = Message::Warning(404);
+    Mmanager(curmes);    
+}
+
+fn Mmanager(curmes : Message){
+    match curmes {
+        Message::Print(message) => println!("{}", message),
+        Message::Succes => println!("succes"),
+        Message::Warning(error_nbr) => println!("error {}", error_nbr)
+    }
 }
